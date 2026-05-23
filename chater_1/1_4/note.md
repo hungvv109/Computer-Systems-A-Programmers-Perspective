@@ -100,3 +100,11 @@
 - **ISA vs Microarchitecture**:
     - **ISA** chỉ mô tả: instruction tạo ra hiệu ứng gì.
     - **microarchitecture** mô tả: CPU thực sự được implement như thế nào bên trong.
+
+## 1.4.2 Running the ```hello``` Program
+
+- Khi gõ ```./hello```, bên trong computer xảy ra chuyện gì?
+
+    ![img](img/image1.png)
+
+    ![img](img/image2.png)
