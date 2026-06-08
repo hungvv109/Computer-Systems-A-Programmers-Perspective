@@ -40,3 +40,23 @@
     ![img](img/image.png)
 
 - **Kernel là phần lõi của Operating System, luôn nằm trong memory, chuyên quản lý hardware và process.**
+
+## 1.7.2 Threads
+
+- Thread là luồng thực thi bên trong process.
+- Một process chứa nhiều thread.
+- Các thread bên trong process:
+    - Dùng chung code, global data, heap, shared libraries.
+    - Có riêng: stack, register context, thread ID
+
+- Ưu điểm:
+    - nhẹ hơn process
+    - chia sẻ dữ liệu dễ hơn
+    - tận dụng nhiều CPU/core tốt hơn
+    - phù hợp cho server và chương trình concurrent
+
+- Nhược điểm:
+    - dễ bị race condition
+    - khó debug
+    - cần synchronization
+    - có thể deadlock
