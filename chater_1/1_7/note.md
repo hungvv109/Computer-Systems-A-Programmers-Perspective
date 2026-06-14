@@ -60,3 +60,48 @@
     - khó debug
     - cần synchronization
     - có thể deadlock
+
+## 1.7.3 Virtual Memory (Bộ nhớ ảo)
+
+- Khi mở app (Chorm, VS Code, terminal, ..), mỗi process sẽ được hệ điều hành cho sử dụng **virtual address space**, process sẽ nghĩ là của riêng nó @@
+    - Thực tế, hệ điều hành sẽ map RAM thật với các địa chỉ ảo đó.
+- Bố cục:
+
+Địa chỉ cao
+┌─────────────────────────┐
+│ Kernel virtual memory   │
+├─────────────────────────┤
+│ User stack              │
+│                         │
+│        ↓ stack grows    │
+├─────────────────────────┤
+│ Shared libraries        │
+├─────────────────────────┤
+│        ↑ heap grows     │
+│ Heap                    │
+├─────────────────────────┤
+│ Program code and data   │
+└─────────────────────────┘
+Địa chỉ thấp
+
+- **Program code and data**: chứa code. `main()` nằm trong code, biến global nằm ở data.
+
+    - Vùng này thường được tạo ra khi program bắt đầu chạy
+
+- **Heap**: vùng bộ nhớ dùng để cấp phát động khi chương trình đang chạy.
+
+    - Heap có thể lớn lên hoặc nhỏ đi trong lúc chương trình chạy
+
+- **Shared libraries**: vùng chứa code và data của các thư viện dùng chung.
+- **Stack**: vùng bộ nhớ dùng cho function calls.
+- **Kernel virtual memory**: vùng bộ nhớ dành riêng cho **kernel** — phần lõi của hệ điều hành.
+    - Muốn dùng chức năng của kernel, chương trình phải đi qua cơ chế đặc biệt gọi là system call (`read()`, `write()`, `open()`, `fork()`, `execve()`)
+
+- Cần Virtual Memory vì:
+    - Mỗi process được cô lập.
+        - Process A không thể tùy tiện đọc bộ nhớ của Process B.
+        - Chrome không nên đọc được mật khẩu đang nằm trong memory của VS Code hoặc app ngân hàng.
+
+    - Chương trình tưởng có bộ nhớ liên tục.
+    - Dùng disk như bộ nhớ phụ.
+    
