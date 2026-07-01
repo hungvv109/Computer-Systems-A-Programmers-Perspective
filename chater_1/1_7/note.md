@@ -105,3 +105,6 @@
     - Chương trình tưởng có bộ nhớ liên tục.
     - Dùng disk như bộ nhớ phụ.
     
+## 1.7.4 Files
+![i](img/2.jpg)
+![i](img/1.jpg)
